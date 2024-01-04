@@ -1,0 +1,6 @@
+Oracle PL/SQL учебник - https://oracleplsql.ru/contents-oracle-plsql.html
+
+
+Подробнее можно узнать, как создаются функции, процедуры и триггеры:
+в Oracle - https://docs.oracle.com/database/121/LNPLS/toc.htm
+в PostgreSQL - https://postgrespro.ru/docs/postgresql/9.4/xfunc-sql
