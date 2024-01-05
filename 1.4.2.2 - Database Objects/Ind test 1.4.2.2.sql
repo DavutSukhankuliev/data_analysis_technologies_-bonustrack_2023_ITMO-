@@ -14,6 +14,9 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(Result);
 END;
 
+SELECT GetNumber(5, 7)
+FROM DUAL;
+
 /*Обратите внимание, что в среде ORACLE APEX поля типа DATE отображаются в формате:
   dd.mm.yyyy. Тем не менее, этот тип данных кроме даты содержит и время.
   Для того, чтобы это время увидеть, достаточно задать явный формат, включающий время.
@@ -67,3 +70,22 @@ BEGIN
         END LOOP;
     dbms_output.put_line(counter);
 END;
+
+
+SELECT COUNT(*)
+FROM STOPS
+WHERE CoordinateDistance(59.9340782, 30.3378086, LATITUDE, LONGITUDE) <= 350;
+
+
+SELECT ID_STOP, CoordinateDistance(b.LATITUDE, b.LONGITUDE, i.LATITUDE, i.LONGITUDE) AS MIN
+FROM STOPS i,
+     (SELECT LATITUDE, LONGITUDE
+      FROM STOPS
+      WHERE ID_STOP = 15546) b
+WHERE ID_STOP NOT IN (SELECT ID_STOP
+                      FROM ROUTE_BY_STOPS
+                      WHERE ID_VEHICLE IN (SELECT ID_VEHICLE
+                                           FROM VEHICLE
+                                           WHERE VEHICLE_NAME = 'ТРОЛЛЕЙБУС')
+                        AND ROUTE_NUMBER = 11)
+ORDER BY MIN;
