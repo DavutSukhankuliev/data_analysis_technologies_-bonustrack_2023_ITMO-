@@ -1,0 +1,44 @@
+/*Ключу user_list соответствует список посетителей сайта.
+Каждый новый посетитель добавлялся командой RPUSH.
+Напишите запрос, который выведет
+и удалит из списка последнего добавленного посетителя.*/
+
+RPUSH user_list q w e r t
+
+RPOP user_list
+
+/*Ключам friends:Elena и friends:Boris соответствуют множества,
+содержащие сведения о друзьях Елены и Бориса.
+Напишите запрос, который сформирует (и выведет) множество
+всех друзей Елены, которые не являются друзьями Бориса.*/
+
+SADD friends:Elena q w e r t y
+SADD friends:Boris e r t y i o
+
+SDIFF friends:Elena friends:Boris
+
+/*Ключу user_r_set было сопоставлено ранжированное множество с помощью следующей команды:
+ ZADD user_r_set 3 Tom 5 Anna 2 Sergey 8 Ivan 1 Alex 4 Semen
+
+Для какого из элементов ранжированного множества команда
+ZRANK выдаст значение 3?*/
+
+ZADD user_r_set 3 Tom 5 Anna 2 Sergey 8 Ivan 1 Alex 4 Semen
+
+ZRNAK user_r_set Semen
+
+/*Какие из предложенных команд и в какой последовательности нужно выполнить, чтобы:
+- создать множество, ассоциированное с ключом basket:107
+- проверить (вывести) его содержимое
+- задать ограничение для времени существования ключа равным 10 минутам
+- убедиться, что ограничение по времени установлено (вывести оставшееся время существования ключа)*/
+
+# EXPIRE basket:107 10
+3. EXPIRE basket:107 600
+4. TTL basket:107
+# EXPIREAT basket:107 10
+# EXPIREAT basket:107 600
+# PERSIST basket:107
+2. SMEMBERS basket:107
+1. SADD basket:107 banana apple carrot potato tomato cucumber
+# GET basket:107

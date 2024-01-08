@@ -1,0 +1,19 @@
+/*В базе Redis выполнена последовательность команд:
+Какой результат выдаст последняя команда?*/
+
+SADD name_set_1 "Arina"
+SADD name_set_1 "Cat"
+SADD name_set_1 "Dan"
+SADD name_set_2 "Cat"
+SADD name_set_2 "Sam"
+SCARD name_set_1
+
+/*В базе Redis выполнена последовательность команд:
+Какой результат выдаст последняя команда?*/
+
+SADD name_set_1 "Arina"
+SADD name_set_1 "Cat"
+SADD name_set_1 "Dan"
+SADD name_set_2 "Cat"
+SADD name_set_2 "Sam"
+SINTER name_set_1 name_set_2
